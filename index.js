@@ -11,7 +11,7 @@ const path =require('path');
 
 
 const app= express();
-const port =process.env.PORT || 4000;
+const port =process.env.PORT ||  4000;
 dotEnv.config();
 app.use(cors());
 mongoose.connect(process.env.Mongo_Url)
