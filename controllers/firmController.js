@@ -26,30 +26,26 @@ const addFirm = async(req,res)=>{
 
     const firm =new Firm({
         firmName,area ,category ,offer ,image ,vendor:vendor._id
-    });
+    }); 
     const savedFirm = await firm.save();
+    const firmId = savedFirm._id;
     vendor.firm.push(savedFirm)
     await vendor.save() 
     
-    return res.status(200).json({message:"Add-firm successfully"})
+    return res.status(200).json({message:"Add-firm successfully",firmId})
     }catch(error){
         console.error(error);
         return res.status(500).json({message:"Interval server error 1"})
     }
-    
-
 }
 const deleteFirmById = async(req,res)=>{
     try {
         const firmId = req.params.firmId;
-
-        const deleteFirm = await Firm.findByIdAndDelete(firmId);
+         const deleteFirm = await Firm.findByIdAndDelete(firmId);
 
         if (!deleteFirm){
             res.status(404).json({error:"product not found"})
         }
-
-
     } catch (error) {
         console.log(error)
         res.status(500).json({error:'Internal server error'})
