@@ -27,7 +27,7 @@ const addProduct =async(req,res)=>{
         }
         const product = new Product({
             productName,price,category,image,description,firm:firm._id
-        })
+        })  
 
         const savedProduct =await product.save();
 
@@ -49,11 +49,11 @@ const getProductByFirm = async(req,res)=>{
     if (!firm){
         res.status(404).json({error:"firm not found"})
     }
-    const resturent =firm.firmName; 
+    const restaurant =firm.firmName; 
     const products = await Product.find({firm : firmId});
-    res.status(200).json({resturent , products})
+    res.status(200).json({restaurant , products})
 }
-
+    
 
 const deleteProductById = async(req,res)=>{
     try {
@@ -64,8 +64,7 @@ const deleteProductById = async(req,res)=>{
         if (!deleteproduct){
             res.status(404).json({error:"product not found"})
         }
-
-
+        res.status(200).json({ message: "Product deleted successfully" });
     } catch (error) {
         console.log(error)
         res.status(500).json({error:'Internal server error'})

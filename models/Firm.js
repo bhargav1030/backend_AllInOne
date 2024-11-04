@@ -1,8 +1,8 @@
 
-const mongoose =require("mongoose");
+const mongoose =require("mongoose")
 
 const firmSchema = new mongoose.Schema({
-    firmName:{
+    firmName:{  
         type: String,
         required:true,
         unique:true
